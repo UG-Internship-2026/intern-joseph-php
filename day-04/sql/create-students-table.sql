@@ -1,0 +1,12 @@
+CREATE TABLE students ( 
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+    first_name VARCHAR(100) NOT NULL, 
+    last_name VARCHAR(100) NOT NULL, 
+    email VARCHAR(150) NOT NULL UNIQUE, 
+    programme VARCHAR(150) NOT NULL, 
+    created_at TIMESTAMP NULL, 
+    updated_at TIMESTAMP NULL 
+);
+
+
+SHOW TABLES; 
