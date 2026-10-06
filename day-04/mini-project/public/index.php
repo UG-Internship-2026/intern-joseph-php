@@ -39,12 +39,16 @@
                         <td><?= $student["email"] ?></td>
                         <td><?= $student["programme"] ?></td>
                         <td><a href="view-student.php?id=<?=$student["id"]?>">View</a></td>
+                        <td><a href="edit-student.php?id=<?= $student["id"] ?>">Edit</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
         </table>
     
 
+    <a href="create-student.php">
+        Create Students
+    </a>
 </body>
 </html>
 
