@@ -3,86 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
+    <title>Create Student</title>
+
+    <link rel="stylesheet" href="../src/css/create-student.css">
 </head>
+
 <body>
-    <h1>Create Student</h1>
 
-    <form action="create-student.php" method="POST">
-        <label>First Name:
-            <input type="text" name="first_name" required>
-        </label>
-        <br><br>
-        <label>Last Name:
-            <input type="text" name="last_name" required>
-        </label>
-        <br><br>
-        <label>Email:
-            <input type="email" name="email" required>
-        </label>
-        <br><br>
-        <label>Programme:
-            <input type="text" name="programme" required>
-        </label>
-        <br><br>
-        <button type="submit">
-            Submit
-        </button>
+    <div class="container">
 
-        <a href="index.php">Back</a>
-    </form>
+        <h1 id="title">Create Student</h1>
 
-    <?php
+        <p class="form-description">
+            Add a new student to the system
+        </p>
 
-    require '../config/database.php';
-    require '../src/validation.php';
+        <form action="create-student.php" method="POST" class="student-form">
 
-    try {
+            <div class="form-group">
+                <label for="first_name">First Name</label>
 
-        if($_SERVER["REQUEST_METHOD"] === "POST") {
-    
-            $stmt = $pdo->prepare(
-                "INSERT INTO students
-                (first_name, last_name, email, programme)
-                VALUES 
-                (:first_name, :last_name, :email, :programme)
-            ");
-        
-            $first_name = $_POST["first_name"];
-            $last_name = $_POST["last_name"];
-            $email = $_POST["email"];
-            $programme = $_POST["programme"];
-    
-            $errors = validateStudent($first_name, $last_name, $email, $programme);
-        
-            if(empty($errors)){ 
-                
-                $stmt->execute([
-                    "first_name" => $first_name,
-                    "last_name" => $last_name,
-                    "email" => $email,
-                    "programme" => $programme
+                <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+
+                <input
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="programme">Programme</label>
+
+                <input
+                    type="text"
+                    id="programme"
+                    name="programme"
+                    required
+                >
+            </div>
+
+            <div class="form-actions">
+
+                <button type="submit" class="submit-button">
+                    👨‍🎓  Create Student
+                </button>
+
+                <a href="index.php" class="back-button">
+                    🔙 Back
+                </a>
+
+            </div>
+
+        </form>
+
+        <?php
+
+        require '../config/database.php';
+        require '../src/validation.php';
+
+        try {
+
+            if($_SERVER["REQUEST_METHOD"] === "POST") {
+
+                $stmt = $pdo->prepare(
+                    "INSERT INTO students
+                    (first_name, last_name, email, programme)
+                    VALUES
+                    (:first_name, :last_name, :email, :programme)
+                ");
+
+                $first_name = $_POST["first_name"];
+                $last_name = $_POST["last_name"];
+                $email = $_POST["email"];
+                $programme = $_POST["programme"];
+
+                $errors = validateStudent(
+                    $first_name,
+                    $last_name,
+                    $email,
+                    $programme
+                );
+
+                if(empty($errors)) {
+
+                    $stmt->execute([
+                        "first_name" => $first_name,
+                        "last_name" => $last_name,
+                        "email" => $email,
+                        "programme" => $programme
                     ]);
-                header("Location: index.php");
-            } else {
-                for($i=0;$i<count($errors);$i++) {
-                    echo $errors[$i];
+
+                    header("Location: index.php");
+                    exit;
+
+                } else {
+
+                    for($i = 0; $i < count($errors); $i++) {
+                        echo $errors[$i];
+                    }
+
                 }
             }
-    
-    
+
+        } catch(PDOException $e) {
+
+            if($e->getCode() === "23000") {
+
+                echo "Email already exists. Please use a different email.";
+
+            } else {
+
+                echo $e->getMessage();
+
+            }
         }
 
-    } catch(PDOException $e) {
-        if($e->getCode() === "23000") {
-            echo "Email already exists. Please use a different email.";
-        } else {
-            echo $e->getMessage();
-        }
-        
-    }    
+        ?>
 
-    
-    ?>
+    </div>
+
 </body>
 </html>
