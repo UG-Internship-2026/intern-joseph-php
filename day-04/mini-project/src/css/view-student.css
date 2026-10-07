@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+}
+
+.view-container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.view-header {
+    margin-bottom: 35px;
+}
+
+.view-title {
+    margin: 0;
+    font-size: 32px;
+    color: #111827;
+}
+
+.view-description {
+    margin-top: 10px;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.student-details {
+    overflow-x: auto;
+}
+
+.student-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.student-details-table th,
+.student-details-table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.student-details-table th {
+    background-color: #f8fafc;
+    color: #374151;
+    font-weight: bold;
+}
+
+.student-details-table td {
+    color: #4b5563;
+}
+
+.student-details-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.view-actions {
+    margin-top: 30px;
+}
+
+.view-back-button {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-back-button:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.03);
+}
