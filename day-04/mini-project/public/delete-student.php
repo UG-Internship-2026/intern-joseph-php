@@ -6,8 +6,6 @@
     <title>Delete Student Record</title>
 </head>
 <body>
-    <h1>Delete Student Record</h1>
-
     <?php
     require '../config/database.php';
 
