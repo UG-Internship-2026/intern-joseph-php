@@ -35,29 +35,52 @@
     <?php
 
     require '../config/database.php';
-    if($_SERVER["REQUEST_METHOD"] === "POST") {
+    require '../src/validation.php';
 
-        $stmt = $pdo->prepare(
-            "INSERT INTO students
-            (first_name, last_name, email, programme)
-            VALUES 
-            (:first_name, :last_name, :email, :programme)
-        ");
-    
-        $first_name = $_POST["first_name"];
-        $last_name = $_POST["last_name"];
-        $email = $_POST["email"];;
-        $programme = $_POST["programme"];
-    
-    
-        $stmt->execute([
-            "first_name" => $first_name,
-            "last_name" => $last_name,
-            "email" => $email,
-            "programme" => $programme
-        ]);
-    }
+    try {
 
+        if($_SERVER["REQUEST_METHOD"] === "POST") {
+    
+            $stmt = $pdo->prepare(
+                "INSERT INTO students
+                (first_name, last_name, email, programme)
+                VALUES 
+                (:first_name, :last_name, :email, :programme)
+            ");
+        
+            $first_name = $_POST["first_name"];
+            $last_name = $_POST["last_name"];
+            $email = $_POST["email"];
+            $programme = $_POST["programme"];
+    
+            $errors = validateStudent($first_name, $last_name, $email, $programme);
+        
+            if(empty($errors)){ 
+                
+                $stmt->execute([
+                    "first_name" => $first_name,
+                    "last_name" => $last_name,
+                    "email" => $email,
+                    "programme" => $programme
+                    ]);
+                header("Location: index.php");
+            } else {
+                for($i=0;$i<count($errors);$i++) {
+                    echo $errors[$i];
+                }
+            }
+    
+    
+        }
+
+    } catch(PDOException $e) {
+        if($e->getCode() === "23000") {
+            echo "Email already exists. Please use a different email.";
+        } else {
+            echo $e->getMessage();
+        }
+        
+    }    
 
     
     ?>
