@@ -9,7 +9,6 @@ body {
     max-width: 1100px;
     margin: 40px auto;
     padding: 20px;
-    box-shadow: 2px 5px 20px ;
     border-radius: 22px;
 }
 
@@ -125,6 +124,14 @@ body {
     color: white;
 }
 
+.edit-action:hover {
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
+}
+
+
+
 .delete-button {
     border: none;
     padding: 10px 10px;
@@ -140,3 +147,5 @@ body {
     border: 1px solid red;
     transform: rotate(10deg);
 }
+
+
