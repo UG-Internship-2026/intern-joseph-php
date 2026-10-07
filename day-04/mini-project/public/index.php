@@ -83,11 +83,11 @@
                     <td><?= $student["email"] ?></td>
                     <td><?= $student["programme"] ?></td>
                     <td class="actions">
-                        <a href="view-student.php?id=<?=$student["id"]?>" class="view-action">View</a>
-                        <a href="edit-student.php?id=<?= $student["id"] ?>" class="edit-action">Edit</a>
+                        <a href="view-student.php?id=<?=$student["id"]?>" class="view-action">View 👀</a>
+                        <a href="edit-student.php?id=<?= $student["id"] ?>" class="edit-action">Edit 🖊</a>
                         <form action="delete-student.php" method="POST" class="delete-form">
                             <input type="hidden" name="id" value="<?= $student["id"] ?>">
-                            <button class="delete-button" type="submit">Delete</button>
+                            <button class="delete-button" type="submit">Delete 🗑️</button>
                         </form>
                     </td>
                 </tr>
