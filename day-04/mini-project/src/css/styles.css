@@ -1,0 +1,142 @@
+body {
+    font-family: Arial;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f4f6f8;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    box-shadow: 2px 5px 20px ;
+    border-radius: 22px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#title {
+    margin: 0;
+    font-size: 32px;
+}
+
+.add-student {
+    text-decoration: none;
+    background-color: #2563eb;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.add-student:hover {
+    background-color: #0240eb;
+}
+
+.search-form-container {
+    margin-bottom: 52px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: rgb(235, 234, 234);
+}
+
+.search-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #f5f5f5;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+    transform: scale(1.05);
+}
+
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.students-table th,
+.students-table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.students-table th {
+    background-color: #f8fafc;
+    font-weight: bold;
+}
+
+.students-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.view-action,
+.edit-action {
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.view-action {
+    background-color: white;
+    color: rgb(37, 170, 37);
+    border: 0.2px solid rgb(37, 170, 37);
+}
+
+
+.view-action:hover {
+    background-color: rgb(37, 170, 37);
+    color: white;
+    transform: scale(1.1);
+}
+
+.edit-action {
+    background-color: orange;
+    color: white;
+}
+
+.delete-button {
+    border: none;
+    padding: 10px 10px;
+    border-radius: 6px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+    transform: rotate(10deg);
+}
