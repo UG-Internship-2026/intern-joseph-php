@@ -4,81 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Student</title>
+
+    <link rel="stylesheet" href="../src/css/edit-student.css">
 </head>
 <body>
-    <h1>Edit Student</h1>
 
-    <?php 
-    require '../config/database.php';
+    <div class="edit-container">
 
-    $stmt = $pdo->prepare(
-        "SELECT *
-        FROM students
-        WHERE id = :id
-    ");
-    
-    $id = $_GET["id"];
+        <div class="edit-header">
+            <h1 class="edit-title">Edit Student</h1>
+            <p class="edit-description">
+                Update the student's information
+            </p>
+        </div>
 
-    $stmt->execute([
-        "id" => $id
-    ]);
+        <?php 
+        require '../config/database.php';
 
-    $student = $stmt->fetch();
-
-
-    if($_SERVER["REQUEST_METHOD"] === "POST") {
-        
         $stmt = $pdo->prepare(
-            "UPDATE students
-            SET
-                first_name = :first_name,
-                last_name = :last_name,
-                email = :email,
-                programme = :programme
-            WHERE id = :id"
-        );
+            "SELECT *
+            FROM students
+            WHERE id = :id
+        ");
         
-        $id = $_POST["id"];
-        $first_name = $_POST["first_name"];
-        $last_name= $_POST["last_name"];
-        $email = $_POST["email"];
-        $programme = $_POST["programme"];
-        
-        $stmt->execute(
-            [
-                "id" => $id,
-                "first_name" => $first_name,
-                "last_name" => $last_name,
-                "email" => $email,
-                "programme" => $programme
-            ]
-        );
-        header("Location: index.php");
-    }
-    ?>
-    <form method="POST">
-        <input type="hidden" name="id" value="<?= $student["id"] ?>">
-        <label>First Name:
-            <input type="text" name="first_name" value="<?= $student["first_name"] ?>" required>
-        </label>
-        <br><br>
-        <label>Last Name:
-            <input type="text" name="last_name" value="<?= $student["last_name"] ?>" required>
-        </label>
-        <br><br>
-        <label>Email:
-            <input type="email" name="email" value="<?= $student["email"] ?>" required>
-        </label>
-        <br><br>
-        <label>Programme:
-            <input type="text" name="programme" required value="<?= $student["programme"] ?>" >
-        </label>
-        <br><br>
-        <button type="submit">
-            Update Student
-        </button>
+        $id = $_GET["id"];
 
-        <a href="index.php">Back</a>
-    </form>
+        $stmt->execute([
+            "id" => $id
+        ]);
+
+        $student = $stmt->fetch();
+
+
+        if($_SERVER["REQUEST_METHOD"] === "POST") {
+            
+            $stmt = $pdo->prepare(
+                "UPDATE students
+                SET
+                    first_name = :first_name,
+                    last_name = :last_name,
+                    email = :email,
+                    programme = :programme
+                WHERE id = :id"
+            );
+            
+            $id = $_POST["id"];
+            $first_name = $_POST["first_name"];
+            $last_name= $_POST["last_name"];
+            $email = $_POST["email"];
+            $programme = $_POST["programme"];
+            
+            $stmt->execute(
+                [
+                    "id" => $id,
+                    "first_name" => $first_name,
+                    "last_name" => $last_name,
+                    "email" => $email,
+                    "programme" => $programme
+                ]
+            );
+            header("Location: index.php");
+        }
+        ?>
+
+        <form method="POST" class="edit-form">
+
+            <input
+                type="hidden"
+                name="id"
+                value="<?= $student["id"] ?>"
+            >
+
+            <div class="edit-form-group">
+                <label for="first_name">First Name:</label>
+                <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    value="<?= $student["first_name"] ?>"
+                    required
+                >
+            </div>
+
+            <div class="edit-form-group">
+                <label for="last_name">Last Name:</label>
+                <input
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    value="<?= $student["last_name"] ?>"
+                    required
+                >
+            </div>
+
+            <div class="edit-form-group">
+                <label for="email">Email:</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="<?= $student["email"] ?>"
+                    required
+                >
+            </div>
+
+            <div class="edit-form-group">
+                <label for="programme">Programme:</label>
+                <input
+                    type="text"
+                    id="programme"
+                    name="programme"
+                    required
+                    value="<?= $student["programme"] ?>"
+                >
+            </div>
+
+            <div class="edit-form-actions">
+
+                <button
+                    type="submit"
+                    class="update-button"
+                >
+                    Update Student
+                </button>
+
+                <a
+                    href="index.php"
+                    class="back-button"
+                >
+                    Back
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </body>
 </html>
